@@ -66,7 +66,6 @@
     "test:watch": "cross-env BABEL_ENV=test karma start",
     "start": "node devServer.js",
     "build:docs": "cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.prod.js",
-    "postpublish": "npm run build:docs",
     "validate": "npm ls"
   },
   "pre-commit": [
