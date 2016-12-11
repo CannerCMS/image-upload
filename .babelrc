@@ -1,0 +1,26 @@
+{
+  "presets": [
+    "airbnb"
+  ],
+  "plugins": [
+    "transform-class-properties",
+    "add-module-exports",
+    "transform-decorators-legacy",
+    ["import", {
+      "libraryName": "antd",
+      "style": "css",
+    }]
+  ],
+  "env": {
+    "development": {
+      "presets": [
+        "react-hmre"
+      ]
+    },
+    "production": {
+      "plugins": [
+        "transform-react-remove-prop-types"
+      ]
+    }
+  }
+}
