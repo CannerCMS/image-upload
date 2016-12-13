@@ -31,11 +31,14 @@ export default class UploadImage extends React.Component {
     return true;
   }
 
-  finishSuccessEdit() {
-    const {onChange} = this.props;
+  finishSuccessEdit(e) {
+    const {onChange, finishEdit} = this.props;
     const urls = this.state.fileList.map(file => file.url);
 
     onChange(urls);
+    this.setState({
+      fileList: []
+    }, finishEdit(e));
   }
 
   uploadFile(info) {
