@@ -24,6 +24,7 @@ export default class EditImage extends Component {
      * @type {bool}
      */
     multiple: PropTypes.bool,
+    serviceConfig: PropTypes.object,
     closeEditPopup: PropTypes.func.isRequired
   }
 
@@ -34,7 +35,10 @@ export default class EditImage extends Component {
   }
 
   render() {
-    const {editPopup, multiple, onChange, closeEditPopup} = this.props;
+    const {editPopup, multiple,
+      onChange, closeEditPopup,
+      serviceConfig
+    } = this.props;
     return (
       <Modal visible={editPopup}
               closable={true}
@@ -48,6 +52,7 @@ export default class EditImage extends Component {
             <TabPane tab="上傳照片" key="1">
               <UploadImage uploadImage={this.uploadImage}
                            multiple={multiple}
+                           serviceConfig={serviceConfig}
                            onChange={onChange}
                            finishEdit={this.finishEdit}/>
             </TabPane>

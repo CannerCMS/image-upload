@@ -20,7 +20,8 @@ export default class UploadImage extends React.Component {
   static propTypes = {
     finishEdit: PropTypes.func,
     onChange: PropTypes.func,
-    multiple: PropTypes.bool
+    multiple: PropTypes.bool,
+    serviceConfig: PropTypes.object
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -50,7 +51,7 @@ export default class UploadImage extends React.Component {
 
     // 2. read from response and show file link
     fileList = fileList.map(file => {
-      if (file.response) {
+      if (file.response && file.response.data) {
         // Component will show file.url as link
         file.url = file.response.data.link;
       }
@@ -63,9 +64,9 @@ export default class UploadImage extends React.Component {
   }
 
   render() {
-    const {multiple, finishEdit} = this.props;
+    const {multiple, finishEdit, serviceConfig} = this.props;
     const {fileList} = this.state;
-    const imgConfig = config.imgurEndPoint();
+    const imgConfig = config.generateConfig(serviceConfig);
     let content;
     let finish;
     let disabled = false;
@@ -73,10 +74,7 @@ export default class UploadImage extends React.Component {
       multiple,
       // name is **need** to be image according to imgur api
       // https://api.imgur.com/endpoints/image
-      name: 'image',
-      accept: 'image/*',
-      headers: imgConfig.header,
-      action: imgConfig.url,
+      ...imgConfig,
       onChange: this.uploadFile
     };
 
@@ -144,7 +142,6 @@ export default class UploadImage extends React.Component {
         </div>
       );
     }
-
     return (
       <Row>
         <div styleName="file-upload">
