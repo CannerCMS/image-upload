@@ -1,6 +1,6 @@
 {
   "name": "@canner/image-upload",
-  "version": "0.2.1",
+  "version": "0.3.1",
   "description": "image uploader",
   "homepage": "",
   "author": {
@@ -69,8 +69,7 @@
     "validate": "npm ls"
   },
   "pre-commit": [
-    "lint",
-    "test"
+    "lint"
   ],
   "repository": "Canner/image-upload",
   "peerDependencies": {
