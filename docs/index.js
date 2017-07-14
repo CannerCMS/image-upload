@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import ImageUpload from '../src/index';
-import firebase from 'firebase';
 
 class Demo extends Component {
   constructor(props) {
@@ -15,20 +14,14 @@ class Demo extends Component {
     };
 
     this.serviceConfig = {
-      name: 'firebase'
+      name: 'image',
+      accept: 'image/*',
+      action: 'https://api.imgur.com/3/image',
+      headers: {
+        'Authorization': 'Client-ID a214c4836559c77',
+        'X-Requested-With': null
+      }
     };
-    const config = {
-      apiKey: "AIzaSyBVa6g2IPH2mSJhOOq07llNPGDJH1PECq8",
-      authDomain: "test-39127.firebaseapp.com",
-      databaseURL: "https://test-39127.firebaseio.com",
-      projectId: "test-39127",
-      storageBucket: "test-39127.appspot.com",
-      messagingSenderId: "534685848415"
-    };
-    firebase.initializeApp(config);
-    this.auth = firebase.auth();
-    this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
-    this.login();
   }
 
   showPopup() {

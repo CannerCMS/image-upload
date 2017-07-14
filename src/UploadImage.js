@@ -2,7 +2,6 @@ import React, {PropTypes} from 'react';
 import {Row, Upload, Icon, Alert, Button, Progress} from 'antd';
 import CSSModules from 'react-css-modules';
 import styles from './style/UploadImage.scss';
-import config from './config';
 const Dragger = Upload.Dragger;
 
 @CSSModules(styles)
@@ -66,7 +65,6 @@ export default class UploadImage extends React.Component {
   render() {
     const {multiple, finishEdit, serviceConfig} = this.props;
     const {fileList} = this.state;
-    const imgConfig = config.generateConfig(serviceConfig);
     let content;
     let finish;
     let disabled = false;
@@ -74,7 +72,7 @@ export default class UploadImage extends React.Component {
       multiple,
       // name is **need** to be image according to imgur api
       // https://api.imgur.com/endpoints/image
-      ...imgConfig,
+      ...serviceConfig,
       onChange: this.uploadFile
     };
 
