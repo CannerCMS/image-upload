@@ -5,7 +5,6 @@ import UploadImage from './UploadImage';
 import DefaultImage from './DefaultImage';
 import CSSModules from 'react-css-modules';
 import styles from './style/EditImage.scss';
-import './style/EditImage.antd.scss';
 const TabPane = Tabs.TabPane;
 
 @CSSModules(styles)

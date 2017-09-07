@@ -1,6 +1,6 @@
 {
   "name": "@canner/image-upload",
-  "version": "0.3.2",
+  "version": "0.3.4",
   "description": "image uploader",
   "homepage": "",
   "author": {
@@ -9,9 +9,9 @@
     "url": ""
   },
   "files": [
-    "lib"
+    "src"
   ],
-  "main": "lib/index.js",
+  "main": "src/index.js",
   "keywords": [
     ""
   ],
@@ -57,10 +57,7 @@
   },
   "scripts": {
     "lint": "eslint src test docs",
-    "clean": "rimraf lib dist",
-    "build": "npm run clean && cp -r ./src ./lib && npm run build:lib",
-    "build:lib": "cross-env BABEL_ENV=production babel src --out-dir lib",
-    "prepublish": "npm run clean && npm run check:src && npm run build",
+    "prepublish": "npm run check:src",
     "check:src": "npm run lint",
     "test": "cross-env BABEL_ENV=test karma start --single-run",
     "test:watch": "cross-env BABEL_ENV=test karma start",
