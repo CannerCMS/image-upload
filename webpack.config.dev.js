@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+const theme = require('@canner/canner-theme');
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -48,6 +49,16 @@ module.exports = {
           "sass?sourceMap"
         ],
         exclude: [/\.lib\.scss$/, /\.antd\.scss/]
+      },
+      {
+        test: /\.less$/,
+        loaders: [
+          "style",
+          "css",
+          // atnd themes
+          // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
+          `less?{"modifyVars":${JSON.stringify(theme)}}`
+        ]
       },
       {
         test: [/\.lib\.scss$/, /\.antd\.scss$/],
