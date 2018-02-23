@@ -44,8 +44,12 @@ export default class Gallery extends Component {
     const that = this;
     for (var i = 1; i <= item.size; i++) {
       data.push({
-        url: `https://canner-qa.s3.amazonaws.com/gallery/${key}/${key}_${i}_${item.min}.${item.type}`,
-        name: `https://canner-qa.s3.amazonaws.com/gallery/${key}/${key}_${i}_${item.max}.${item.type}`
+        url: `https://canner-qa.s3.amazonaws.com/gallery/${key}/${key}_${i}_${
+          item.min
+        }.${item.type}`,
+        name: `https://canner-qa.s3.amazonaws.com/gallery/${key}/${key}_${i}_${
+          item.max
+        }.${item.type}`
       });
     }
     return (
