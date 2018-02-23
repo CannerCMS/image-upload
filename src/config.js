@@ -12,14 +12,14 @@ module.exports = {
   ],
   gallery: {
     bnb: {
-      name: "民宿",
+      name: "B&B",
       size: 7,
       max: "1800",
       min: "600",
       type: "jpg"
     },
     coffee: {
-      name: "咖啡廳",
+      name: "Cafe",
       size: 11,
       max: "1800",
       min: "600",

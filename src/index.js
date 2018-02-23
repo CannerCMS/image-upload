@@ -1,3 +1,3 @@
-import ImageUpload from './EditImage';
+import ImageUpload from "./EditImage";
 
 export default ImageUpload;

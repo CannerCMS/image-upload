@@ -1,13 +1,13 @@
-import React, {PropTypes, Component} from 'react';
-import CSSModules from 'react-css-modules';
-import styles from './style/DefaultImage.scss';
-import CONFIG from './config';
-import {Tabs, Row, Col} from 'antd';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import CSSModules from "react-css-modules";
+import styles from "./style/DefaultImage.scss";
+import CONFIG from "./config";
+import { Tabs, Row, Col } from "antd";
 const TabPane = Tabs.TabPane;
 
 @CSSModules(styles)
 export default class Gallery extends Component {
-
   constructor(props) {
     super(props);
     this.generateContent = this.generateContent.bind(this);
@@ -54,8 +54,9 @@ export default class Gallery extends Component {
           return (
             <Col span={8} onClick={() => that.handleClick(datum)} key={i}>
               <div
-                style={{backgroundImage: `url(${datum.url})`}}
-                styleName="image"/>
+                style={{ backgroundImage: `url(${datum.url})` }}
+                styleName="image"
+              />
             </Col>
           );
         })}
@@ -65,9 +66,7 @@ export default class Gallery extends Component {
 
   render() {
     return (
-      <Tabs tabPosition="top">
-        {this.generateContent(CONFIG.gallery)}
-      </Tabs>
+      <Tabs tabPosition="top">{this.generateContent(CONFIG.gallery)}</Tabs>
     );
   }
 }

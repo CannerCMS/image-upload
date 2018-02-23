@@ -1,12 +1,12 @@
-import React, {PropTypes} from 'react';
-import {Row, Upload, Icon, Alert, Button, Progress} from 'antd';
-import CSSModules from 'react-css-modules';
-import styles from './style/UploadImage.scss';
+import React from "react";
+import PropTypes from "prop-types";
+import { Row, Upload, Icon, Alert, Button, Progress } from "antd";
+import CSSModules from "react-css-modules";
+import styles from "./style/UploadImage.scss";
 const Dragger = Upload.Dragger;
 
 @CSSModules(styles)
 export default class UploadImage extends React.Component {
-
   constructor(props) {
     super(props);
     this.uploadFile = this.uploadFile.bind(this);
@@ -21,7 +21,7 @@ export default class UploadImage extends React.Component {
     onChange: PropTypes.func,
     multiple: PropTypes.bool,
     serviceConfig: PropTypes.object
-  }
+  };
 
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.fileList.length > 0 && nextState.fileList === 0) {
@@ -32,13 +32,16 @@ export default class UploadImage extends React.Component {
   }
 
   finishSuccessEdit(e) {
-    const {onChange, finishEdit} = this.props;
+    const { onChange, finishEdit } = this.props;
     const urls = this.state.fileList.map(file => file.url);
 
     onChange(urls);
-    this.setState({
-      fileList: []
-    }, finishEdit(e));
+    this.setState(
+      {
+        fileList: []
+      },
+      finishEdit(e)
+    );
   }
 
   uploadFile(info) {
@@ -63,8 +66,8 @@ export default class UploadImage extends React.Component {
   }
 
   render() {
-    const {multiple, finishEdit, serviceConfig} = this.props;
-    const {fileList} = this.state;
+    const { multiple, finishEdit, serviceConfig } = this.props;
+    const { fileList } = this.state;
     let content;
     let finish;
     let disabled = false;
@@ -82,35 +85,35 @@ export default class UploadImage extends React.Component {
         let info;
         disabled = true;
 
-        if (file.status === 'error') {
+        if (file.status === "error") {
           info = (
             <div key={file.name}>
               <Alert
-                message="抱歉，上傳照片出了點問題。我們正在儘速為您修復!"
+                message="Sorry, there was a problem with your request."
                 type="error"
                 showIcon
               />
               <Button type="primary" onClick={finishEdit}>
-                知道了
+                OK
               </Button>
             </div>
           );
-        } else if (file.status === 'uploading') {
+        } else if (file.status === "uploading") {
           info = (
             <div key={file.name}>
               <Alert
-                message={`正在上傳 ${file.name}`}
+                message={`${file.name} is uploading...`}
                 type="info"
                 showIcon
               />
-              <Progress percent={Math.round(percent)}/>
+              <Progress percent={Math.round(percent)} />
             </div>
           );
-        } else if (file.status === 'done') {
+        } else if (file.status === "done") {
           info = (
             <div key={file.name}>
               <Alert
-                message={`成功上傳 ${file.name}`}
+                message={`${file.name} is uploaded!`}
                 type="success"
                 showIcon
               />
@@ -121,10 +124,10 @@ export default class UploadImage extends React.Component {
         return info;
       });
 
-      if (fileList.every(file => file.status === 'done')) {
+      if (fileList.every(file => file.status === "done")) {
         finish = (
           <Button type="primary" onClick={this.finishSuccessEdit}>
-            完成！
+            Success!
           </Button>
         );
       }
@@ -135,17 +138,16 @@ export default class UploadImage extends React.Component {
             <Icon type="inbox" />
           </p>
 
-          <p className="ant-upload-text">點此或是把檔案拖移到這邊</p>
-          <p className="ant-upload-hint">就可以上傳您的檔案</p>
+          <p className="ant-upload-text">
+            Click to browse or drag images here.
+          </p>
         </div>
       );
     }
     return (
       <Row>
         <div styleName="file-upload">
-          <Dragger {...props}
-            fileList={fileList}
-            disabled={disabled}>
+          <Dragger {...props} fileList={fileList} disabled={disabled}>
             <div styleName="file-upload__content">
               {content}
               {finish}
