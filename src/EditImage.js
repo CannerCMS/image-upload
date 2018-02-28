@@ -46,13 +46,13 @@ export default class EditImage extends Component {
       <Modal
         visible={editPopup}
         closable={true}
-        width="700"
+        width={700}
         onCancel={closeEditPopup}
         title="Choose Photos"
         footer={<div />}
         maskClosable={true}
       >
-        <div styleName="editImage-container" id="editImage-container">
+        <div styleName="editImage-container">
           <Tabs type="card">
             <TabPane tab="Upload" key="1">
               <UploadImage

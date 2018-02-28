@@ -1,12 +1,10 @@
 {
   "name": "@canner/image-upload",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "image uploader",
-  "homepage": "",
   "author": {
     "name": "Canner",
-    "email": "chilijung@gmail.com",
-    "url": ""
+    "email": "chilijung@canner.io"
   },
   "files": [
     "src"
@@ -47,9 +45,9 @@
     "node-sass": "^4.0.0",
     "precommit-hook-eslint": "^3.0.0",
     "prettier": "^1.10.2",
-    "react": "^15.3.1",
+    "react": "^16.2.0",
     "react-addons-test-utils": "^15.3.1",
-    "react-dom": "^15.3.1",
+    "react-dom": "^16.2.0",
     "resolve-url-loader": "^1.6.1",
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
@@ -72,12 +70,12 @@
   ],
   "repository": "Canner/image-upload",
   "peerDependencies": {
-    "react": "^15.3.1",
-    "react-dom": "^15.3.1"
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0",
+    "react-dom": "^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "antd": "^2.5.2",
+    "antd": "^3.2.2",
     "prop-types": "^15.6.0",
     "react-css-modules": "^4.1.0"
   }
