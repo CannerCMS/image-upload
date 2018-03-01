@@ -88,16 +88,24 @@ export default class UploadImage extends React.Component {
         if (file.status === "error") {
           info = (
             <div key={file.name}>
-              <Alert message="上傳圖片失敗了！" type="error" showIcon />
+              <Alert
+                message="Sorry, there was a problem with your request."
+                type="error"
+                showIcon
+              />
               <Button type="primary" onClick={finishEdit}>
-                確定
+                OK
               </Button>
             </div>
           );
         } else if (file.status === "uploading") {
           info = (
             <div key={file.name}>
-              <Alert message={`${file.name} 上傳中...`} type="info" showIcon />
+              <Alert
+                message={`${file.name} is uploading...`}
+                type="info"
+                showIcon
+              />
               <Progress percent={Math.round(percent)} />
             </div>
           );
@@ -105,7 +113,7 @@ export default class UploadImage extends React.Component {
           info = (
             <div key={file.name}>
               <Alert
-                message={`${file.name} 上傳完成!`}
+                message={`${file.name} is uploaded!`}
                 type="success"
                 showIcon
               />
@@ -119,7 +127,7 @@ export default class UploadImage extends React.Component {
       if (fileList.every(file => file.status === "done")) {
         finish = (
           <Button type="primary" onClick={this.finishSuccessEdit}>
-            成功!
+            Success!
           </Button>
         );
       }
@@ -130,7 +138,9 @@ export default class UploadImage extends React.Component {
             <Icon type="inbox" />
           </p>
 
-          <p className="ant-upload-text">瀏覽或拖曳圖片</p>
+          <p className="ant-upload-text">
+            Click to browse or drag images here.
+          </p>
         </div>
       );
     }

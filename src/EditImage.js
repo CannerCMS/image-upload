@@ -48,13 +48,13 @@ export default class EditImage extends Component {
         closable={true}
         width={700}
         onCancel={closeEditPopup}
-        title="選擇圖片"
+        title="Choose Photos"
         footer={<div />}
         maskClosable={true}
       >
         <div styleName="editImage-container">
           <Tabs type="card">
-            <TabPane tab="圖片上傳" key="1">
+            <TabPane tab="Upload" key="1">
               <UploadImage
                 uploadImage={this.uploadImage}
                 multiple={multiple}
@@ -63,7 +63,10 @@ export default class EditImage extends Component {
                 finishEdit={this.finishEdit}
               />
             </TabPane>
-            <TabPane tab="圖片網址" key="3">
+            <TabPane tab="Gallery" key="2">
+              <DefaultImage onChange={onChange} />
+            </TabPane>
+            <TabPane tab="Url" key="3">
               <UrlImage onChange={onChange} />
             </TabPane>
           </Tabs>
