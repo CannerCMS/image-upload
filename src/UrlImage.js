@@ -38,14 +38,14 @@ export default class UrlImage extends Component {
     return (
       <Row>
         <Col>
-          <span>Enter your image URL</span>
-          <Input onChange={this.onChange} placeholder="image url" />
+          <span>輸入圖片網址</span>
+          <Input onChange={this.onChange} placeholder="圖片網址" />
           <Button
             styleName="enter-button"
             type="primary"
             onClick={this.onClick}
           >
-            Confirm
+            確定
           </Button>
           <div
             style={{
