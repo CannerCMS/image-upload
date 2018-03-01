@@ -88,11 +88,7 @@ export default class UploadImage extends React.Component {
         if (file.status === "error") {
           info = (
             <div key={file.name}>
-              <Alert
-                message="上傳圖片失敗了！"
-                type="error"
-                showIcon
-              />
+              <Alert message="上傳圖片失敗了！" type="error" showIcon />
               <Button type="primary" onClick={finishEdit}>
                 確定
               </Button>
@@ -101,11 +97,7 @@ export default class UploadImage extends React.Component {
         } else if (file.status === "uploading") {
           info = (
             <div key={file.name}>
-              <Alert
-                message={`${file.name} 上傳中...`}
-                type="info"
-                showIcon
-              />
+              <Alert message={`${file.name} 上傳中...`} type="info" showIcon />
               <Progress percent={Math.round(percent)} />
             </div>
           );
@@ -138,9 +130,7 @@ export default class UploadImage extends React.Component {
             <Icon type="inbox" />
           </p>
 
-          <p className="ant-upload-text">
-            瀏覽或拖曳圖片
-          </p>
+          <p className="ant-upload-text">瀏覽或拖曳圖片</p>
         </div>
       );
     }
