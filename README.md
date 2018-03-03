@@ -1,4 +1,6 @@
 # image-upload [![NPM version][npm-image]][npm-url]  [![Dependency Status][daviddm-image]][daviddm-url]
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Canner/image-upload.svg?token=74a723d5158aae429a3c25fcaeb21144451fcfbd57276074c93c1fb4563a57ba&ts=1520087927582)](https://greenkeeper.io/)
 > image uploader
 
 ## Installation
