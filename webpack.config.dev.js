@@ -1,61 +1,71 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
-  devtool: 'eval-source-map',
-  entry: [
-    'webpack-hot-middleware/client',
-    './docs/index.js'
-  ],
+  entry: './docs/index.js',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/static/'
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['.js']
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify("development")
-      }
-    })
-  ],
+  resolveLoader: {
+    moduleExtensions: ["-loader"]
+  },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loaders: ['babel'],
+        use: 'babel',
         exclude: path.resolve(__dirname, "node_modules")
       },
       {
+        // exclude flexboxgrid is for https://github.com/Canner/react-qa-core-plugins
         test: /\.css$/,
-        loaders: [
-          "style",
-          "css"
+        use: [
+          {
+            loader: 'style'
+          },
+          {
+            loader: 'css'
+          }
         ],
         exclude: /flexboxgrid/
       },
       {
         test: /\.scss$/,
-        loaders: [
-          "style?sourceMap",
-          "css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]",
-          "resolve-url",
-          "sass?sourceMap"
+        use: [
+          {
+            loader: 'style',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'css',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: "[path]___[name]__[local]___[hash:base64:5]"
+            }
+          }
         ],
-        exclude: [/\.lib\.scss$/, /\.antd\.scss/]
+        exclude: [/\.antd.scss$/, /\.lib.scss$/]
       },
       {
-        test: [/\.lib\.scss$/, /\.antd\.scss$/],
-        loaders: [
-          "style",
-          "css",
-          "sass"
-        ]
+        test: [/\.antd.scss$/, /\.lib.scss$/],
+        use: [
+          {
+            loader: 'style'
+          },
+          {
+            loader: 'css'
+          },
+          {
+            loader: 'sass'
+          }
+        ],
       }
     ]
   }

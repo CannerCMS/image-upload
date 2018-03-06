@@ -1,29 +1,18 @@
 module.exports = {
   "extends": [
     "prettier",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:flowtype/recommended"
   ],
   "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaVersion": 7,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
   "env": {
     "browser": true
   },
   "plugins": [
     "prettier",
-    "react"
+    "react",
+    "flowtype"
   ],
-  "settings": {
-    "react": {
-      "pragma": "React",  // Pragma to use, default to "React"
-      "version": "15.3.1"
-    }
-  },
   "rules": {
     "new-cap": 0
   }
