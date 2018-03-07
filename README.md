@@ -15,10 +15,7 @@ $ npm install --save @canner/image-upload
 | closeEditPopup | (img: Image) => void | null | called when close |
 | editPopup | boolean | false | should popup show or not |
 | multiple | boolean | false | allow upload multiple images or not. |
-| galleryConfig | Array<{
-  name: string,
-  gallery: Array<{ url: string, name: string }>
-}> | see `src/config.js` | Setup default album for users to choose. |
+| galleryConfig | `Array<{name: string, gallery: Array<{ url: string, name: string }>}>` | see `src/config.js` | Setup default album for users to choose. |
 
 
 ## Usage
