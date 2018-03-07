@@ -33,9 +33,9 @@ export default class Gallery extends Component<Props> {
 
   static defaultProps = {
     galleryConfig: CONFIG
-  }
+  };
 
-  handleClick(data: {url: string, name: string}) {
+  handleClick(data: { url: string, name: string }) {
     this.props.onChange([data.url]);
   }
 
@@ -53,16 +53,17 @@ export default class Gallery extends Component<Props> {
     return tabs;
   }
 
-  generateGallery(gallery: Array<{url: string, name: string}>) {
+  generateGallery(gallery: Array<{ url: string, name: string }>) {
     return (
       <Row>
         {gallery.map((datum, i) => {
           return (
             <Col
-              style={{padding: '5px'}}
+              style={{ padding: "5px" }}
               span={8}
               key={i}
-              onClick={() => this.handleClick(datum)}>
+              onClick={() => this.handleClick(datum)}
+            >
               <DefaultImage url={datum.url} />
             </Col>
           );
@@ -72,12 +73,8 @@ export default class Gallery extends Component<Props> {
   }
 
   render() {
-    const {galleryConfig} = this.props;
+    const { galleryConfig } = this.props;
 
-    return (
-      <Tabs tabPosition="top">
-        {this.generateContent(galleryConfig)}
-      </Tabs>
-    );
+    return <Tabs tabPosition="top">{this.generateContent(galleryConfig)}</Tabs>;
   }
 }

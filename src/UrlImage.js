@@ -12,7 +12,7 @@ type Props = {
 
 type State = {
   url: ?string,
-  confirmDisabled: boolean,
+  confirmDisabled: boolean
 };
 
 const PreviewImg = styled.div`
@@ -75,24 +75,28 @@ export default class UrlImage extends Component<Props, State> {
           >
             Confirm
           </Button>
-          {url && confirmDisabled && (
-            <ImageLoader
-              src={url}
-              onLoad={() => this.confirmDisable(false)}
-              error={() => <Alert message="Please check if the image link is valid." type="error" />}
-              loading={() => {
-                return (
-                  <div>
-                    <Icon type="loading" style={{ fontSize: 24 }} spin />
-                  </div>
-                );
-              }}
-              image={props => <PreviewImg {...props}/>}
-            />
-          )}
-          {url && !confirmDisabled && (
-            <PreviewImg src={url}/>
-          )}
+          {url &&
+            confirmDisabled && (
+              <ImageLoader
+                src={url}
+                onLoad={() => this.confirmDisable(false)}
+                error={() => (
+                  <Alert
+                    message="Please check if the image link is valid."
+                    type="error"
+                  />
+                )}
+                loading={() => {
+                  return (
+                    <div>
+                      <Icon type="loading" style={{ fontSize: 24 }} spin />
+                    </div>
+                  );
+                }}
+                image={props => <PreviewImg {...props} />}
+              />
+            )}
+          {url && !confirmDisabled && <PreviewImg src={url} />}
         </Col>
       </Row>
     );

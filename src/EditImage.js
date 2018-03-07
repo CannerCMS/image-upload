@@ -67,7 +67,8 @@ export default class EditImage extends Component<Props> {
               <TabPane tab="Gallery" key="2">
                 <DefaultImage
                   galleryConfig={galleryConfig}
-                  onChange={onChange} />
+                  onChange={onChange}
+                />
               </TabPane>
             )}
             <TabPane tab="Url" key="3">
