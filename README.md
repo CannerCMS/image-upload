@@ -11,7 +11,7 @@ $ npm install --save @canner/image-upload
 
 | Name         | Type    | Default | Description |
 | ------------ | ------- | ------- | ----------- |
-| onChange | `(value: string | Array<string>) => void` | null | called every change, if `multiple` to true `value` is an array. |
+| onChange | `(value: string \| Array<string>) => void` | null | called every change, if `multiple` to true `value` is an array. |
 | closeEditPopup | `() => void` | null | called when close |
 | editPopup | boolean | false | should popup show or not |
 | multiple | boolean | false | allow upload multiple images or not. |
