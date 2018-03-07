@@ -1,8 +1,10 @@
+// @flow
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Row, Upload, Icon, Alert, Button, Progress } from "antd";
 const Dragger = Upload.Dragger;
+
+import type { OnChange, ServiceConfig } from "./types";
 
 const FileUploadContainer = styled.div`
   width: 400px;
@@ -15,24 +17,28 @@ const FileUploadContent = styled.div`
   margin: 10px;
 `;
 
-export default class UploadImage extends React.Component {
-  constructor(props) {
+type Props = {
+  finishEdit: (e: any) => void,
+  onChange: OnChange,
+  multiple: boolean,
+  serviceConfig: ServiceConfig
+};
+
+type State = {
+  fileList: Array<any>
+};
+
+export default class UploadImage extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
-    this.uploadFile = this.uploadFile.bind(this);
-    this.finishSuccessEdit = this.finishSuccessEdit.bind(this);
+    (this: any).uploadFile = this.uploadFile.bind(this);
+    (this: any).finishSuccessEdit = this.finishSuccessEdit.bind(this);
     this.state = {
       fileList: []
     };
   }
 
-  static propTypes = {
-    finishEdit: PropTypes.func,
-    onChange: PropTypes.func,
-    multiple: PropTypes.bool,
-    serviceConfig: PropTypes.object
-  };
-
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps: Props, nextState: State) {
     if (this.state.fileList.length > 0 && nextState.fileList === 0) {
       return false;
     }
@@ -40,7 +46,7 @@ export default class UploadImage extends React.Component {
     return true;
   }
 
-  finishSuccessEdit(e) {
+  finishSuccessEdit(e: any) {
     const { onChange, finishEdit } = this.props;
     const urls = this.state.fileList.map(file => file.url);
 
@@ -53,7 +59,7 @@ export default class UploadImage extends React.Component {
     );
   }
 
-  uploadFile(info) {
+  uploadFile(info: { file: any, fileList: Array<any> }) {
     let fileList = info.fileList;
     // see issue: https://github.com/ant-design/ant-design/issues/2423#issuecomment-233523579
     // 1. Limit the number of uploaded files
@@ -135,7 +141,11 @@ export default class UploadImage extends React.Component {
 
       if (fileList.every(file => file.status === "done")) {
         finish = (
-          <Button type="primary" onClick={this.finishSuccessEdit}>
+          <Button
+            type="primary"
+            onClick={this.finishSuccessEdit}
+            style={{ margin: "10px" }}
+          >
             Success!
           </Button>
         );

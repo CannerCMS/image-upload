@@ -1,38 +1,67 @@
+// @flow
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import { Input, Row, Col, Button, Icon, Alert } from "antd";
+import ImageLoader from "react-loading-image";
 import styled from "styled-components";
-import { Input, Row, Col, Button } from "antd";
 
-export default class UrlImage extends Component {
-  constructor(props) {
+import type { OnChange } from "./types";
+
+type Props = {
+  onChange: OnChange
+};
+
+type State = {
+  url: ?string,
+  confirmDisabled: boolean,
+};
+
+const PreviewImg = styled.div`
+  background-image: url(${props => props.src});
+  width: 100%;
+  height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+`;
+
+export default class UrlImage extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      url: ""
+      url: null,
+      confirmDisabled: true
     };
-    this.onChange = this.onChange.bind(this);
-    this.onClick = this.onClick.bind(this);
+    (this: any).onChange = this.onChange.bind(this);
+    (this: any).onClick = this.onClick.bind(this);
+    (this: any).confirmDisable = this.confirmDisable.bind(this);
   }
 
-  static propTypes = {
-    onChange: PropTypes.func.isRequired
-  };
-
-  onChange(e) {
+  onChange(e: any) {
     this.setState({
+      confirmDisabled: true,
       url: e.target.value
+    });
+  }
+
+  confirmDisable(disable: boolean) {
+    this.setState({
+      confirmDisabled: disable
     });
   }
 
   onClick() {
     const { url } = this.state;
-    this.props.onChange([url]);
-    this.setState({
-      url: ""
-    });
+
+    if (url) {
+      this.props.onChange([url]);
+      this.setState({
+        url: null,
+        confirmDisabled: true
+      });
+    }
   }
 
   render() {
-    const { url } = this.state;
+    const { url, confirmDisabled } = this.state;
     return (
       <Row>
         <Col>
@@ -41,19 +70,29 @@ export default class UrlImage extends Component {
           <Button
             style={{ margin: "10px 0" }}
             type="primary"
+            disabled={confirmDisabled}
             onClick={this.onClick}
           >
             Confirm
           </Button>
-          <div
-            style={{
-              backgroundImage: `url(${url})`,
-              width: "100%",
-              height: "300px",
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat"
-            }}
-          />
+          {url && confirmDisabled && (
+            <ImageLoader
+              src={url}
+              onLoad={() => this.confirmDisable(false)}
+              error={() => <Alert message="Please check if the image link is valid." type="error" />}
+              loading={() => {
+                return (
+                  <div>
+                    <Icon type="loading" style={{ fontSize: 24 }} spin />
+                  </div>
+                );
+              }}
+              image={props => <PreviewImg {...props}/>}
+            />
+          )}
+          {url && !confirmDisabled && (
+            <PreviewImg src={url}/>
+          )}
         </Col>
       </Row>
     );

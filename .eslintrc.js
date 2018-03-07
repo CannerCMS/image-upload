@@ -14,6 +14,7 @@ module.exports = {
     "flowtype"
   ],
   "rules": {
-    "new-cap": 0
+    "new-cap": 0,
+    "no-unused-vars": "error"
   }
 };

@@ -1,5 +1,5 @@
 # image-upload [![NPM version][npm-image]][npm-url]  [![Dependency Status][daviddm-image]][daviddm-url]
-> image uploader
+> An image-uploader based on ant design (https://ant.design/)
 
 ## Installation
 
@@ -76,7 +76,7 @@ ReactDOM.render(
 ## Start example server
 
 ```
-node devServer.js
+npm start
 ```
 
 ## License

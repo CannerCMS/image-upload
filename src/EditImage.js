@@ -1,8 +1,8 @@
 // @flow
 import React, { Component } from "react";
 import { Tabs, Modal } from "antd";
-import PropTypes from "prop-types";
 import styled from "styled-components";
+import type { OnChange, ServiceConfig, GalleryConfig } from "./types";
 
 import UploadImage from "./UploadImage";
 import DefaultImage from "./DefaultImage";
@@ -13,25 +13,22 @@ const Container = styled.div`
   padding: 30px;
 `;
 
-export default class EditImage extends Component {
-  constructor(props) {
+type Props = {
+  galleryConfig: GalleryConfig,
+  onChange: OnChange,
+  editPopup: boolean,
+  multiple: boolean,
+  serviceConfig: ServiceConfig,
+  closeEditPopup: () => void
+};
+
+export default class EditImage extends Component<Props> {
+  constructor(props: Props) {
     super(props);
-    this.finishEdit = this.finishEdit.bind(this);
+    (this: any).finishEdit = this.finishEdit.bind(this);
   }
 
-  static propTypes = {
-    onChange: PropTypes.func.isRequired,
-    editPopup: PropTypes.bool.isRequired,
-    /**
-     * whether can multiple upload
-     * @type {bool}
-     */
-    multiple: PropTypes.bool,
-    serviceConfig: PropTypes.object,
-    closeEditPopup: PropTypes.func.isRequired
-  };
-
-  finishEdit(e) {
+  finishEdit(e: any) {
     e.preventDefault();
     e.stopPropagation();
     this.props.closeEditPopup();
@@ -43,7 +40,8 @@ export default class EditImage extends Component {
       multiple,
       onChange,
       closeEditPopup,
-      serviceConfig
+      serviceConfig,
+      galleryConfig
     } = this.props;
     return (
       <Modal
@@ -52,23 +50,26 @@ export default class EditImage extends Component {
         width={700}
         onCancel={closeEditPopup}
         title="Choose Photos"
-        footer={<div />}
+        footer={null}
         maskClosable={true}
       >
         <Container>
           <Tabs type="card">
             <TabPane tab="Upload" key="1">
               <UploadImage
-                uploadImage={this.uploadImage}
                 multiple={multiple}
                 serviceConfig={serviceConfig}
                 onChange={onChange}
                 finishEdit={this.finishEdit}
               />
             </TabPane>
-            <TabPane tab="Gallery" key="2">
-              <DefaultImage onChange={onChange} />
-            </TabPane>
+            {galleryConfig !== null && (
+              <TabPane tab="Gallery" key="2">
+                <DefaultImage
+                  galleryConfig={galleryConfig}
+                  onChange={onChange} />
+              </TabPane>
+            )}
             <TabPane tab="Url" key="3">
               <UrlImage onChange={onChange} />
             </TabPane>
