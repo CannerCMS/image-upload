@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import styled from 'styled-components';
+import styled from "styled-components";
 import CONFIG from "./config";
 import { Tabs, Row, Col } from "antd";
 const TabPane = Tabs.TabPane;
@@ -66,7 +66,7 @@ export default class Gallery extends Component {
         {data.map((datum, i) => {
           return (
             <Col span={8} onClick={() => that.handleClick(datum)} key={i}>
-              <DefaultImage url={datum.url}/>
+              <DefaultImage url={datum.url} />
             </Col>
           );
         })}

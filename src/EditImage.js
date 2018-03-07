@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { Tabs, Modal } from "antd";
 import PropTypes from "prop-types";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 import UploadImage from "./UploadImage";
 import DefaultImage from "./DefaultImage";
@@ -10,7 +10,7 @@ import UrlImage from "./UrlImage";
 const TabPane = Tabs.TabPane;
 
 const Container = styled.div`
-	padding: 30px;
+  padding: 30px;
 `;
 
 export default class EditImage extends Component {

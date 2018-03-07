@@ -1,19 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { Row, Upload, Icon, Alert, Button, Progress } from "antd";
 const Dragger = Upload.Dragger;
 
 const FileUploadContainer = styled.div`
   width: 400px;
-	height: 300px;
-	margin-right: auto;
-	margin-left: auto;
-`
+  height: 300px;
+  margin-right: auto;
+  margin-left: auto;
+`;
 
 const FileUploadContent = styled.div`
   margin: 10px;
-`
+`;
 
 export default class UploadImage extends React.Component {
   constructor(props) {
@@ -144,11 +144,9 @@ export default class UploadImage extends React.Component {
       content = (
         <div>
           <p>
-            <Icon type="inbox" style={{fontSize: 70}}/>
+            <Icon type="inbox" style={{ fontSize: 70 }} />
           </p>
-          <p>
-            Click to browse or drag images here.
-          </p>
+          <p>Click to browse or drag images here.</p>
         </div>
       );
     }
