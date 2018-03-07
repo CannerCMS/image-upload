@@ -1,15 +1,18 @@
+// @flow
 import React, { Component } from "react";
 import { Tabs, Modal } from "antd";
 import PropTypes from "prop-types";
+import styled from 'styled-components';
 
 import UploadImage from "./UploadImage";
 import DefaultImage from "./DefaultImage";
 import UrlImage from "./UrlImage";
-import CSSModules from "react-css-modules";
-import styles from "./style/EditImage.scss";
 const TabPane = Tabs.TabPane;
 
-@CSSModules(styles)
+const Container = styled.div`
+	padding: 30px;
+`;
+
 export default class EditImage extends Component {
   constructor(props) {
     super(props);
@@ -52,7 +55,7 @@ export default class EditImage extends Component {
         footer={<div />}
         maskClosable={true}
       >
-        <div styleName="editImage-container">
+        <Container>
           <Tabs type="card">
             <TabPane tab="Upload" key="1">
               <UploadImage
@@ -70,7 +73,7 @@ export default class EditImage extends Component {
               <UrlImage onChange={onChange} />
             </TabPane>
           </Tabs>
-        </div>
+        </Container>
       </Modal>
     );
   }

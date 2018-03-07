@@ -25,51 +25,15 @@ module.exports = {
         exclude: path.resolve(__dirname, "node_modules")
       },
       {
-        // exclude flexboxgrid is for https://github.com/Canner/react-qa-core-plugins
         test: /\.css$/,
         use: [
           {
-            loader: 'style'
+            loader: 'style-loader'
           },
           {
-            loader: 'css'
+            loader: 'css-loader'
           }
-        ],
-        exclude: /flexboxgrid/
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          {
-            loader: 'style',
-            options: {
-              sourceMap: true
-            }
-          },
-          {
-            loader: 'css',
-            options: {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: "[path]___[name]__[local]___[hash:base64:5]"
-            }
-          }
-        ],
-        exclude: [/\.antd.scss$/, /\.lib.scss$/]
-      },
-      {
-        test: [/\.antd.scss$/, /\.lib.scss$/],
-        use: [
-          {
-            loader: 'style'
-          },
-          {
-            loader: 'css'
-          },
-          {
-            loader: 'sass'
-          }
-        ],
+        ]
       }
     ]
   }

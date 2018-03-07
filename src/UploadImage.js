@@ -1,11 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from 'styled-components';
 import { Row, Upload, Icon, Alert, Button, Progress } from "antd";
-import CSSModules from "react-css-modules";
-import styles from "./style/UploadImage.scss";
 const Dragger = Upload.Dragger;
 
-@CSSModules(styles)
+const FileUploadContainer = styled.div`
+  width: 400px;
+	height: 300px;
+	margin-right: auto;
+	margin-left: auto;
+`
+
+const FileUploadContent = styled.div`
+  margin: 10px;
+`
+
 export default class UploadImage extends React.Component {
   constructor(props) {
     super(props);
@@ -134,11 +143,10 @@ export default class UploadImage extends React.Component {
     } else {
       content = (
         <div>
-          <p className="ant-upload-drag-icon">
-            <Icon type="inbox" />
+          <p>
+            <Icon type="inbox" style={{fontSize: 70}}/>
           </p>
-
-          <p className="ant-upload-text">
+          <p>
             Click to browse or drag images here.
           </p>
         </div>
@@ -146,14 +154,14 @@ export default class UploadImage extends React.Component {
     }
     return (
       <Row>
-        <div styleName="file-upload">
+        <FileUploadContainer>
           <Dragger {...props} fileList={fileList} disabled={disabled}>
-            <div styleName="file-upload__content">
+            <FileUploadContent>
               {content}
               {finish}
-            </div>
+            </FileUploadContent>
           </Dragger>
-        </div>
+        </FileUploadContainer>
       </Row>
     );
   }

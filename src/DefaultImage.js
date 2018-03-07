@@ -1,12 +1,21 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import CSSModules from "react-css-modules";
-import styles from "./style/DefaultImage.scss";
+import styled from 'styled-components';
 import CONFIG from "./config";
 import { Tabs, Row, Col } from "antd";
 const TabPane = Tabs.TabPane;
 
-@CSSModules(styles)
+const DefaultImage = styled.div`
+  background-image: url(${props => props.url});
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+  height: 200px;
+  width: 100%;
+  cursor: pointer;
+`;
+
 export default class Gallery extends Component {
   constructor(props) {
     super(props);
@@ -57,10 +66,7 @@ export default class Gallery extends Component {
         {data.map((datum, i) => {
           return (
             <Col span={8} onClick={() => that.handleClick(datum)} key={i}>
-              <div
-                style={{ backgroundImage: `url(${datum.url})` }}
-                styleName="image"
-              />
+              <DefaultImage url={datum.url}/>
             </Col>
           );
         })}

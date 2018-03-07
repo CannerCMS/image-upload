@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import styled from 'styled-components';
 import { Input, Row, Col, Button } from "antd";
-import styles from "./style/urlImage.scss";
-import CSSModules from "react-css-modules";
 
-@CSSModules(styles)
 export default class UrlImage extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +39,7 @@ export default class UrlImage extends Component {
           <span>Enter your image URL</span>
           <Input onChange={this.onChange} placeholder="image url" />
           <Button
-            styleName="enter-button"
+            style={{margin: '10px 0'}}
             type="primary"
             onClick={this.onClick}
           >
