@@ -1,6 +1,8 @@
 # image-upload [![NPM version][npm-image]][npm-url]  [![Dependency Status][daviddm-image]][daviddm-url]
 > An image-uploader based on ant design (https://ant.design/)
 
+![preview](./docs/image-upload.gif)
+
 ## Installation
 
 ```sh
@@ -15,7 +17,7 @@ $ npm install --save @canner/image-upload
 | closeEditPopup | `() => void` | null | called when close |
 | editPopup | boolean | false | should popup show or not |
 | multiple | boolean | false | allow upload multiple images or not. |
-| galleryConfig | `Array<{name: string, gallery: Array<{ url: string, name: string }>}>` | see `src/config.js` | Setup default album for users to choose. |
+| galleryConfig | `Array<{name: string, gallery: Array<{ url: string, name: string }>}> \| null` | default value see `src/config.js` | Setup albums for users to choose, in `Gallery` tab, disable if set to `null`. |
 
 
 ## Usage
@@ -82,7 +84,7 @@ npm start
 
 ## License
 
-Apache-2.0 © [Canner]()
+Apache-2.0 © [Canner](https://www.canner.io)
 
 
 [npm-image]: https://badge.fury.io/js/image-upload.svg

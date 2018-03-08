@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import {Button} from 'antd';
 import ImageUpload from '../src/index';
 
 class Demo extends Component {
@@ -57,7 +58,8 @@ class Demo extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.showPopup}>show edit</button>
+        <h1>Click the button below to see the demo</h1>
+        <Button onClick={this.showPopup}>show edit</Button>
         <ImageUpload
           closeEditPopup={this.closePopup}
           editPopup={this.state.popup}
