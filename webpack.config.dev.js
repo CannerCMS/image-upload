@@ -21,15 +21,18 @@ module.exports = {
         exclude: path.resolve(__dirname, "node_modules")
       },
       {
-        test: /\.css$/,
+        test: /\.less$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: 'style'
           },
           {
-            loader: 'css-loader'
+            loader: 'css'
+          },
+          {
+            loader: 'less'
           }
-        ]
+        ],
       }
     ]
   }
