@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/lijung/.nvm/versions/node/v9.3.0/bin/node /Users/lijung/.yarn/bin/yarn.js add react-loading-image@latest
+  /Users/lijung/.nvm/versions/node/v9.3.0/bin/node /Users/lijung/.yarn/bin/yarn.js add -D less-loader
 
 PATH: 
   /Users/lijung/.rvm/gems/ruby-2.4.0/bin:/Users/lijung/.rvm/gems/ruby-2.4.0@global/bin:/Users/lijung/.rvm/rubies/ruby-2.4.0/bin:/Users/lijung/.yarn/bin:/Users/lijung/.nvm/versions/node/v9.3.0/bin:/usr/local/mysql/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/lijung/Library/Android/sdk/tools:/Users/lijung/Library/Android/sdk/platform-tools:/Users/lijung/.rvm/bin
@@ -16,14 +16,13 @@ Platform:
 npm manifest: 
   {
     "name": "@canner/image-upload",
-    "version": "0.7.0",
+    "version": "0.9.2",
     "description": "image uploader",
     "author": {
       "name": "Canner",
       "email": "chilijung@canner.io"
     },
     "files": [
-      "src",
       "lib"
     ],
     "main": "lib/index.js",
@@ -58,6 +57,7 @@ npm manifest:
       "karma-mocha": "^1.1.1",
       "karma-sourcemap-loader": "^0.3.7",
       "karma-webpack": "^1.8.0",
+      "less-loader": "^4.0.6",
       "mocha": "^2.4.5",
       "precommit-hook-eslint": "^3.0.0",
       "prettier": "^1.10.2",
@@ -73,7 +73,7 @@ npm manifest:
     "scripts": {
       "build:flow": "flow-copy-source -v -i '**/test/**' src lib",
       "lint": "./node_modules/.bin/prettier --write ./src/**/*.js && eslint src",
-      "prepublish": "npm run clean && npm run check:src && npm run build",
+      "prepublish": "npm run clean && npm run check:src && npm run build:docs && npm run build",
       "check:src": "npm run lint",
       "clean": "rimraf lib dist",
       "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
@@ -81,7 +81,7 @@ npm manifest:
       "test": "cross-env BABEL_ENV=test karma start --single-run",
       "test:watch": "cross-env BABEL_ENV=test karma start",
       "start": "./node_modules/.bin/webpack-dev-server --config webpack.config.dev.js --mode development",
-      "build:docs": "cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.prod.js",
+      "build:docs": "cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.prod.js --mode production",
       "validate": "npm ls"
     },
     "pre-commit": [
@@ -95,6 +95,7 @@ npm manifest:
     "license": "Apache-2.0",
     "dependencies": {
       "antd": "^3.2.2",
+      "react-intl": "^2.4.0",
       "react-loading-image": "^0.2.0",
       "styled-components": "^3.2.0"
     }
@@ -4055,6 +4056,26 @@ Lockfile:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.1.0.tgz#7ed1b1410c6a0e0f78cf95d3b8440c63f78b8614"
   
+  intl-format-cache@^2.0.5:
+    version "2.1.0"
+    resolved "https://registry.yarnpkg.com/intl-format-cache/-/intl-format-cache-2.1.0.tgz#04a369fecbfad6da6005bae1f14333332dcf9316"
+  
+  intl-messageformat-parser@1.4.0:
+    version "1.4.0"
+    resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-1.4.0.tgz#b43d45a97468cadbe44331d74bb1e8dea44fc075"
+  
+  intl-messageformat@^2.0.0, intl-messageformat@^2.1.0:
+    version "2.2.0"
+    resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-2.2.0.tgz#345bcd46de630b7683330c2e52177ff5eab484fc"
+    dependencies:
+      intl-messageformat-parser "1.4.0"
+  
+  intl-relativeformat@^2.0.0:
+    version "2.1.0"
+    resolved "https://registry.yarnpkg.com/intl-relativeformat/-/intl-relativeformat-2.1.0.tgz#010f1105802251f40ac47d0e3e1a201348a255df"
+    dependencies:
+      intl-messageformat "^2.0.0"
+  
   into-stream@^3.1.0:
     version "3.1.0"
     resolved "https://registry.yarnpkg.com/into-stream/-/into-stream-3.1.0.tgz#96fb0a936c12babd6ff1752a17d05616abd094c6"
@@ -4062,7 +4083,7 @@ Lockfile:
       from2 "^2.1.1"
       p-is-promise "^1.1.0"
   
-  invariant@^2.2.0, invariant@^2.2.2:
+  invariant@^2.1.1, invariant@^2.2.0, invariant@^2.2.2:
     version "2.2.3"
     resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.3.tgz#1a827dfde7dcbd7c323f0ca826be8fa7c5e9d688"
     dependencies:
@@ -4642,6 +4663,14 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/lcid/-/lcid-1.0.0.tgz#308accafa0bc483a3867b4b6f2b9506251d1b835"
     dependencies:
       invert-kv "^1.0.0"
+  
+  less-loader@^4.0.6:
+    version "4.0.6"
+    resolved "https://registry.yarnpkg.com/less-loader/-/less-loader-4.0.6.tgz#7bcfbb9053181c18d57e213e87346958e02b2769"
+    dependencies:
+      clone "^2.1.1"
+      loader-utils "^1.1.0"
+      pify "^3.0.0"
   
   levn@^0.3.0, levn@~0.3.0:
     version "0.3.0"
@@ -6684,6 +6713,15 @@ Lockfile:
       object-assign "^4.1.1"
       prop-types "^15.6.0"
   
+  react-intl@^2.4.0:
+    version "2.4.0"
+    resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-2.4.0.tgz#66c14dc9df9a73b2fbbfbd6021726e80a613eb15"
+    dependencies:
+      intl-format-cache "^2.0.5"
+      intl-messageformat "^2.1.0"
+      intl-relativeformat "^2.0.0"
+      invariant "^2.1.1"
+  
   react-lazy-load@^3.0.12:
     version "3.0.13"
     resolved "https://registry.yarnpkg.com/react-lazy-load/-/react-lazy-load-3.0.13.tgz#3b0a92d336d43d3f0d73cbe6f35b17050b08b824"
@@ -8571,7 +8609,7 @@ Trace:
   Error: Command failed.
   Exit code: 2
   Command: sh
-  Arguments: -c npm run clean && npm run check:src && npm run build
+  Arguments: -c npm run clean && npm run check:src && npm run build:docs && npm run build
   Directory: /Users/lijung/Documents/canner/image-upload
   Output:
   
