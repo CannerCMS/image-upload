@@ -110,8 +110,8 @@ npm start
 Apache-2.0 © [Canner](https://www.canner.io)
 
 
-[npm-image]: https://badge.fury.io/js/image-upload.svg
-[npm-url]: https://npmjs.org/package/image-upload
+[npm-image]: https://badge.fury.io/js/%40canner%2Fimage-upload.svg
+[npm-url]: https://npmjs.org/package/@canner/image-upload
 [travis-image]: https://travis-ci.org/Canner/image-upload.svg?branch=master
 [travis-url]: https://travis-ci.org/Canner/image-upload
 [daviddm-image]: https://david-dm.org/Canner/image-upload.svg?theme=shields.io
