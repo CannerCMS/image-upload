@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Button} from 'antd';
+import {IntlProvider} from 'react-intl';
+import zhTWLocale from '../src/locale/zh_tw';
 import ImageUpload from '../src/index';
 
 class Demo extends Component {
@@ -57,16 +59,20 @@ class Demo extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Click the button below to see the demo</h1>
-        <Button onClick={this.showPopup}>show edit</Button>
-        <ImageUpload
-          closeEditPopup={this.closePopup}
-          editPopup={this.state.popup}
-          onChange={this.onChange}
-          serviceConfig={this.serviceConfig}
-        />
-      </div>
+      <IntlProvider locale="en">
+        <React.Fragment>
+          <h1>Click the button below to see the demo</h1>
+          <Button onClick={this.showPopup}>show edit</Button>
+          <ImageUpload
+            locale="zh"
+            localeMessages={zhTWLocale}
+            closeEditPopup={this.closePopup}
+            editPopup={this.state.popup}
+            onChange={this.onChange}
+            serviceConfig={this.serviceConfig}
+          />
+        </React.Fragment>
+      </IntlProvider>
     );
   }
 }

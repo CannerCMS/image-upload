@@ -75,6 +75,10 @@ export default class Gallery extends Component<Props> {
   render() {
     const { galleryConfig } = this.props;
 
-    return <Tabs tabPosition="top">{this.generateContent(galleryConfig)}</Tabs>;
+    return (
+      <Tabs tabPosition="top">
+        {this.generateContent(galleryConfig)}
+      </Tabs>
+    );
   }
 }

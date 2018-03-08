@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import { Input, Row, Col, Button, Icon, Alert } from "antd";
+import {FormattedMessage} from 'react-intl';
 import ImageLoader from "react-loading-image";
 import styled from "styled-components";
 
@@ -65,15 +66,15 @@ export default class UrlImage extends Component<Props, State> {
     return (
       <Row>
         <Col>
-          <span>Enter your image URL</span>
-          <Input onChange={this.onChange} placeholder="image url" />
+          <FormattedMessage id="imgupload.url.title"/>
+          <Input onChange={this.onChange} />
           <Button
             style={{ margin: "10px 0" }}
             type="primary"
             disabled={confirmDisabled}
             onClick={this.onClick}
           >
-            Confirm
+            <FormattedMessage id="imgupload.btn.confirm"/>
           </Button>
           {url &&
             confirmDisabled && (
@@ -82,7 +83,7 @@ export default class UrlImage extends Component<Props, State> {
                 onLoad={() => this.confirmDisable(false)}
                 error={() => (
                   <Alert
-                    message="Please check if the image link is valid."
+                    message={<FormattedMessage id="imgupload.url.error"/>}
                     type="error"
                   />
                 )}

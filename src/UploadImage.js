@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import styled from "styled-components";
+import {FormattedMessage} from 'react-intl';
 import { Row, Upload, Icon, Alert, Button, Progress } from "antd";
 const Dragger = Upload.Dragger;
 
@@ -104,12 +105,16 @@ export default class UploadImage extends React.Component<Props, State> {
           info = (
             <div key={file.name}>
               <Alert
-                message="Sorry, there was a problem with your request."
+                message={(
+                  <FormattedMessage
+                    id="imgupload.upload.error.info"
+                    />
+                )}
                 type="error"
                 showIcon
               />
               <Button type="primary" onClick={finishEdit}>
-                OK
+                <FormattedMessage id="imgupload.btn.confirm"/>
               </Button>
             </div>
           );
@@ -117,7 +122,12 @@ export default class UploadImage extends React.Component<Props, State> {
           info = (
             <div key={file.name}>
               <Alert
-                message={`${file.name} is uploading...`}
+                message={(
+                  <FormattedMessage
+                    id="imgupload.upload.uploading.info"
+                    values={{filename: file.name}}
+                    />
+                )}
                 type="info"
                 showIcon
               />
@@ -128,7 +138,12 @@ export default class UploadImage extends React.Component<Props, State> {
           info = (
             <div key={file.name}>
               <Alert
-                message={`${file.name} is uploaded!`}
+                message={(
+                  <FormattedMessage
+                    id="imgupload.upload.success.info"
+                    values={{filename: file.name}}
+                    />
+                )}
                 type="success"
                 showIcon
               />
@@ -146,7 +161,7 @@ export default class UploadImage extends React.Component<Props, State> {
             onClick={this.finishSuccessEdit}
             style={{ margin: "10px" }}
           >
-            Success!
+            <FormattedMessage id="imgupload.upload.success"/>
           </Button>
         );
       }
@@ -156,7 +171,7 @@ export default class UploadImage extends React.Component<Props, State> {
           <p>
             <Icon type="inbox" style={{ fontSize: 70 }} />
           </p>
-          <p>Click to browse or drag images here.</p>
+          <FormattedMessage id="imgupload.upload.info"/>
         </div>
       );
     }

@@ -9,17 +9,6 @@
 $ npm install --save @canner/image-upload
 ```
 
-## Props
-
-| Name         | Type    | Default | Description |
-| ------------ | ------- | ------- | ----------- |
-| onChange | `(value: string \| Array<string>) => void` | null | called every change, if `multiple` to true `value` is an array. |
-| closeEditPopup | `() => void` | null | called when close |
-| editPopup | boolean | false | should popup show or not |
-| multiple | boolean | false | allow upload multiple images or not. |
-| galleryConfig | `Array<{name: string, gallery: Array<{ url: string, name: string }>}> \| null` | default value see `src/config.js` | Setup albums for users to choose, in `Gallery` tab, disable if set to `null`. |
-
-
 ## Usage
 
 ```js
@@ -75,6 +64,39 @@ ReactDOM.render(
 , document.getElementById('root'));
 
 ```
+
+## Props
+
+| Name         | Type    | Default | Description |
+| ------------ | ------- | ------- | ----------- |
+| locale | string | 'en' | Set locale |
+| localeMessages | localeMessages: {[string]: string} | see `src/locale/en.js` | Locale messages |
+| onChange | `(value: string \| Array<string>) => void` | null | called every change, if `multiple` to true `value` is an array. |
+| closeEditPopup | `() => void` | null | called when close |
+| editPopup | boolean | false | should popup show or not |
+| multiple | boolean | false | allow upload multiple images or not. |
+| galleryConfig | `Array<{name: string, gallery: Array<{ url: string, name: string }>}> \| null` | default value see `src/config.js` | Setup albums for users to choose, in `Gallery` tab, disable if set to `null`. |
+
+## Support i18n
+
+This package support i18n, currently support languages:
+
+- en (see [src/locale/en.js](./src/locale/en.js))
+- zh_tw (see [src/locale/zh_tw.js](./src/locale/zh_tw.js))
+- Submit your language! PRs are welcome!
+
+**Usage:** import specific locale messages from `lib` folder, and pass it into `localeMessages` props.
+
+```js
+import zhTWLocale from '@canner/image-upload/lib/locale/zh_tw';
+
+<ImageUpload
+  locale="zh"
+  localeMessages={zhTWLocale}
+  {...otherProps}
+/>
+```
+
 
 ## Start example server
 

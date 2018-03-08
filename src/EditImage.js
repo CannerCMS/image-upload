@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import { Tabs, Modal } from "antd";
+import {IntlProvider, FormattedMessage, addLocaleData} from 'react-intl';
 import styled from "styled-components";
 import type { OnChange, ServiceConfig, GalleryConfig } from "./types";
 
@@ -9,11 +10,19 @@ import DefaultImage from "./DefaultImage";
 import UrlImage from "./UrlImage";
 const TabPane = Tabs.TabPane;
 
+import enLocale from './locale/en';
+import en from 'react-intl/locale-data/en';
+import zh from 'react-intl/locale-data/zh';
+
+addLocaleData([...en, ...zh]);
+
 const Container = styled.div`
   padding: 30px;
 `;
 
 type Props = {
+  locale?: string,
+  localeMessages: {[string]: string},
   galleryConfig: GalleryConfig,
   onChange: OnChange,
   editPopup: boolean,
@@ -28,6 +37,11 @@ export default class EditImage extends Component<Props> {
     (this: any).finishEdit = this.finishEdit.bind(this);
   }
 
+  static defaultProps = {
+    locale: 'en',
+    localeMessages: enLocale
+  }
+
   finishEdit(e: any) {
     e.preventDefault();
     e.stopPropagation();
@@ -36,6 +50,8 @@ export default class EditImage extends Component<Props> {
 
   render() {
     const {
+      locale,
+      localeMessages,
       editPopup,
       multiple,
       onChange,
@@ -44,39 +60,46 @@ export default class EditImage extends Component<Props> {
       galleryConfig
     } = this.props;
     return (
-      <Modal
-        visible={editPopup}
-        closable={true}
-        width={700}
-        onCancel={closeEditPopup}
-        title="Choose Photos"
-        footer={null}
-        maskClosable={true}
-      >
-        <Container>
-          <Tabs type="card">
-            <TabPane tab="Upload" key="1">
-              <UploadImage
-                multiple={multiple}
-                serviceConfig={serviceConfig}
-                onChange={onChange}
-                finishEdit={this.finishEdit}
-              />
-            </TabPane>
-            {galleryConfig !== null && (
-              <TabPane tab="Gallery" key="2">
-                <DefaultImage
-                  galleryConfig={galleryConfig}
+      <IntlProvider
+        locale={locale}
+        defaultLocale="en"
+        messages={localeMessages}>
+        <Modal
+          visible={editPopup}
+          closable={true}
+          width={700}
+          onCancel={closeEditPopup}
+          title={
+            <FormattedMessage id="imgupload.title"/>
+          }
+          footer={null}
+          maskClosable={true}
+        >
+          <Container>
+            <Tabs type="card">
+              <TabPane tab={<FormattedMessage id="imgupload.tab1.title"/>} key="1">
+                <UploadImage
+                  multiple={multiple}
+                  serviceConfig={serviceConfig}
                   onChange={onChange}
+                  finishEdit={this.finishEdit}
                 />
               </TabPane>
-            )}
-            <TabPane tab="Url" key="3">
-              <UrlImage onChange={onChange} />
-            </TabPane>
-          </Tabs>
-        </Container>
-      </Modal>
+              {galleryConfig !== null && (
+                <TabPane tab={<FormattedMessage id="imgupload.tab2.title"/>} key="2">
+                  <DefaultImage
+                    galleryConfig={galleryConfig}
+                    onChange={onChange}
+                  />
+                </TabPane>
+              )}
+              <TabPane tab={<FormattedMessage id="imgupload.tab3.title"/>} key="3">
+                <UrlImage onChange={onChange} />
+              </TabPane>
+            </Tabs>
+          </Container>
+        </Modal>
+      </IntlProvider>
     );
   }
 }
