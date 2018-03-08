@@ -27,6 +27,7 @@ type Props = {
   onChange: OnChange,
   editPopup: boolean,
   multiple: boolean,
+  // pass image configurations generate from: https://github.com/Canner/image-service-config
   serviceConfig?: ServiceConfig,
   closeEditPopup?: () => void
 };
