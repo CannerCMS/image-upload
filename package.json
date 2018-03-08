@@ -57,7 +57,7 @@
   "scripts": {
     "build:flow": "flow-copy-source -v -i '**/test/**' src lib",
     "lint": "./node_modules/.bin/prettier --write ./src/**/*.js && eslint src",
-    "prepublish": "npm run clean && npm run check:src && npm run build",
+    "prepublish": "npm run clean && npm run check:src && npm run build:docs && npm run build",
     "check:src": "npm run lint",
     "clean": "rimraf lib dist",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
