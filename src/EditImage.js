@@ -23,12 +23,12 @@ const Container = styled.div`
 type Props = {
   locale?: string,
   localeMessages: {[string]: string},
-  galleryConfig: GalleryConfig,
+  galleryConfig?: GalleryConfig,
   onChange: OnChange,
   editPopup: boolean,
   multiple: boolean,
-  serviceConfig: ServiceConfig,
-  closeEditPopup: () => void
+  serviceConfig?: ServiceConfig,
+  closeEditPopup?: () => void
 };
 
 export default class EditImage extends Component<Props> {
@@ -39,13 +39,19 @@ export default class EditImage extends Component<Props> {
 
   static defaultProps = {
     locale: 'en',
-    localeMessages: enLocale
+    multiple: false,
+    localeMessages: enLocale,
+    onChange: (arg: any) => arg,
+    editProps: false
   }
 
   finishEdit(e: any) {
+    const {closeEditPopup} = this.props;
     e.preventDefault();
     e.stopPropagation();
-    this.props.closeEditPopup();
+    if (closeEditPopup) {
+      closeEditPopup();
+    }
   }
 
   render() {
