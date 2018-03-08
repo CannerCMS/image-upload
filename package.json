@@ -7,7 +7,6 @@
     "email": "chilijung@canner.io"
   },
   "files": [
-    "src",
     "lib"
   ],
   "main": "lib/index.js",
