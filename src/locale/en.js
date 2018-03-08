@@ -9,7 +9,8 @@ export default {
   "imgupload.upload.success": "Upload success!",
   "imgupload.upload.success.info": "{filename} is uploaded!",
   "imgupload.upload.uploading.info": "{filename} is uploading...",
-  "imgupload.upload.error.info": "Sorry, there was a problem with your request.",
+  "imgupload.upload.error.info":
+    "Sorry, there was a problem with your request.",
 
   // image url
   "imgupload.url.title": "Enter your image URL",
@@ -17,4 +18,4 @@ export default {
 
   // btn
   "imgupload.btn.confirm": "OK!"
-}
+};

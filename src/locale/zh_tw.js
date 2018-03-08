@@ -17,4 +17,4 @@ export default {
 
   // btn
   "imgupload.btn.confirm": "確認！"
-}
+};
