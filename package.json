@@ -1,6 +1,6 @@
 {
   "name": "@canner/image-upload",
-  "version": "0.9.4",
+  "version": "0.10.0",
   "description": "image uploader",
   "author": {
     "name": "Canner",
@@ -15,12 +15,14 @@
     ""
   ],
   "devDependencies": {
+    "antd": "^3.3.0",
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
     "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.3",
     "babel-plugin-import": "^1.1.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
@@ -62,8 +64,8 @@
     "prepublish": "npm run clean && npm run check:src && npm run build:docs && npm run build",
     "check:src": "npm run lint",
     "clean": "rimraf lib dist",
-    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
-    "build": "npm run build:commonjs && npm run build:flow",
+    "build:es5": "./node_modules/.bin/babel src -d lib --copy-files",
+    "build": "npm run build:es5 && npm run build:flow",
     "test": "cross-env BABEL_ENV=test karma start --single-run",
     "test:watch": "cross-env BABEL_ENV=test karma start",
     "start": "./node_modules/.bin/webpack-dev-server --config webpack.config.dev.js --mode development",
@@ -82,7 +84,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "react-intl": "^2.4.0",
-    "react-loading-image": "^0.2.0",
+    "react-loading-image": "^0.3.0",
     "styled-components": "^3.2.0"
   }
 }
