@@ -8,7 +8,8 @@ import styled from "styled-components";
 import type { OnChange } from "./types";
 
 type Props = {
-  onChange: OnChange
+  onChange: OnChange,
+  closeEditPopup?: () => void
 };
 
 type State = {
@@ -51,13 +52,19 @@ export default class UrlImage extends Component<Props, State> {
 
   onClick() {
     const { url } = this.state;
+    const {closeEditPopup, onChange} = this.props;
 
     if (url) {
-      this.props.onChange([url]);
+      onChange([url]);
       this.setState({
         url: null,
         confirmDisabled: true
       });
+
+      // close popup
+      if (closeEditPopup) {
+        closeEditPopup();
+      }
     }
   }
 
@@ -67,7 +74,7 @@ export default class UrlImage extends Component<Props, State> {
       <Row>
         <Col>
           <FormattedMessage id="imgupload.url.title"/>
-          <Input onChange={this.onChange} />
+          <Input onChange={this.onChange} value={url}/>
           <Button
             style={{ margin: "10px 0" }}
             type="primary"

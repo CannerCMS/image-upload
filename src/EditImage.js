@@ -101,7 +101,7 @@ export default class EditImage extends Component<Props> {
                 </TabPane>
               )}
               <TabPane tab={<FormattedMessage id="imgupload.tab3.title"/>} key="3">
-                <UrlImage onChange={onChange} />
+                <UrlImage onChange={onChange} closeEditPopup={closeEditPopup}/>
               </TabPane>
             </Tabs>
           </Container>
