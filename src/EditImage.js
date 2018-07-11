@@ -33,10 +33,6 @@ type Props = {
 };
 
 export default class EditImage extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-    (this: any).finishEdit = this.finishEdit.bind(this);
-  }
 
   static defaultProps = {
     locale: 'en',
@@ -47,7 +43,7 @@ export default class EditImage extends Component<Props> {
     galleryConfig: null
   }
 
-  finishEdit(e: any) {
+  finishEdit = (e: any) => {
     const {closeEditPopup} = this.props;
     e.preventDefault();
     e.stopPropagation();
