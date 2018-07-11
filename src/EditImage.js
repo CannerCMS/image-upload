@@ -43,7 +43,8 @@ export default class EditImage extends Component<Props> {
     multiple: false,
     localeMessages: enLocale,
     onChange: (arg: any) => arg,
-    editProps: false
+    editProps: false,
+    galleryConfig: null
   }
 
   finishEdit(e: any) {
