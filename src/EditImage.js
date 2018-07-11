@@ -23,7 +23,7 @@ const Container = styled.div`
 type Props = {
   locale?: string,
   localeMessages: {[string]: string},
-  galleryConfig?: GalleryConfig,
+  galleryConfig?: GalleryConfig | null,
   onChange: OnChange,
   editPopup: boolean,
   multiple: boolean,
