@@ -24,22 +24,16 @@ type Props = {
 };
 
 export default class Gallery extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-    (this: any).generateContent = this.generateContent.bind(this);
-    (this: any).generateGallery = this.generateGallery.bind(this);
-    (this: any).handleClick = this.handleClick.bind(this);
-  }
 
   static defaultProps = {
     galleryConfig: CONFIG
   };
 
-  handleClick(data: { url: string, name: string }) {
+  handleClick = (data: { url: string, name: string }) => {
     this.props.onChange([data.url]);
   }
 
-  generateContent(gallery: GalleryConfig) {
+  generateContent = (gallery: GalleryConfig) => {
     const that = this;
     let tabs = [];
     gallery.forEach((item, key) => {
@@ -53,7 +47,7 @@ export default class Gallery extends Component<Props> {
     return tabs;
   }
 
-  generateGallery(gallery: Array<{ url: string, name: string }>) {
+  generateGallery = (gallery: Array<{ url: string, name: string }>) => {
     return (
       <Row>
         {gallery.map((datum, i) => {
