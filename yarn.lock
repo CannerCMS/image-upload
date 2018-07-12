@@ -6696,9 +6696,9 @@ react-lazy-load@^3.0.12:
     lodash.throttle "^4.0.0"
     prop-types "^15.5.8"
 
-react-loading-image@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/react-loading-image/-/react-loading-image-0.3.0.tgz#8a91e6771e6a3fbd828ab679088163e8c8762556"
+react-loading-image@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/react-loading-image/-/react-loading-image-0.4.1.tgz#084a7600a410c8c4c34e313ddd28781184a99992"
 
 react-slick@~0.20.0:
   version "0.20.0"

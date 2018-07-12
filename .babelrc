@@ -6,10 +6,6 @@
     "stage-0"
   ],
   "plugins": [
-    "transform-decorators-legacy",
-    ["import", {
-      "libraryName": "antd",
-      "style": true
-    }]
+    "transform-decorators-legacy"
   ]
 }
