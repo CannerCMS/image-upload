@@ -8,8 +8,8 @@ const Dragger = Upload.Dragger;
 import type { OnChange, ServiceConfig } from "./types";
 
 const FileUploadContainer = styled.div`
-  width: 400px;
-  height: 300px;
+  width: 350px;
+  height: 200px;
   margin-right: auto;
   margin-left: auto;
 `;
