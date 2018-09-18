@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Button} from 'antd';
 import {IntlProvider} from 'react-intl';
+import {ImgurStorage} from "@canner/canner-storage";
 import enLocale from '../src/locale/en';
 import ImageUpload from '../src/index';
 
@@ -16,15 +17,9 @@ class Demo extends Component {
       currentUser: null
     };
 
-    this.serviceConfig = {
-      name: 'image',
-      accept: 'image/*',
-      action: 'https://api.imgur.com/3/image',
-      headers: {
-        'Authorization': 'Client-ID a214c4836559c77',
-        'X-Requested-With': null
-      }
-    };
+    this.imageStorage = new ImgurStorage({
+      clientId: 'Client-ID a214c4836559c77'
+    });
   }
 
   showPopup() {
@@ -69,7 +64,7 @@ class Demo extends Component {
             closeEditPopup={this.closePopup}
             editPopup={this.state.popup}
             onChange={this.onChange}
-            serviceConfig={this.serviceConfig}
+            imageStorage={this.imageStorage}
           />
         </React.Fragment>
       </IntlProvider>

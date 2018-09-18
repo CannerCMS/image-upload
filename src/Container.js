@@ -24,14 +24,14 @@ export default class Container extends Component<Props> {
   }
 
   render() {
-    const {multiple, serviceConfig, onChange, galleryConfig, closeEditPopup} = this.props;
+    const {multiple, imageStorage, onChange, galleryConfig, closeEditPopup} = this.props;
     return (
       <Content>
         <Tabs type="card">
           <TabPane tab={<FormattedMessage id="imgupload.tab1.title"/>} key="1">
             <UploadImage
               multiple={multiple}
-              serviceConfig={serviceConfig}
+              imageStorage={imageStorage}
               onChange={onChange}
               finishEdit={this.finishEdit}
             />

@@ -76,7 +76,7 @@ ReactDOM.render(
 | editPopup | boolean | false | should popup show or not |
 | multiple | boolean | false | allow upload multiple images or not. |
 | galleryConfig | `Array<{name: string, gallery: Array<{ url: string, name: string }>}> \| null` | default `null` see `src/config.js` for demo settings | Setup albums for users to choose, in `Gallery` tab, disable if set to `null`. |
-| serviceConfig | depends on services | undefined | pass image configurations generate from: https://github.com/Canner/image-service-config |
+| imageStorage | depends on services | undefined | pass image configurations generate from: https://github.com/Canner/canner/tree/canary/packages/canner-storage |
 
 ## Support i18n
 
