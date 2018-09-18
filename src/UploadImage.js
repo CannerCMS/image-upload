@@ -5,7 +5,7 @@ import {FormattedMessage} from 'react-intl';
 import { Row, Upload, Icon, Alert, Button, Progress } from "antd";
 const Dragger = Upload.Dragger;
 
-import type { OnChange, ServiceConfig } from "./types";
+import type { OnChange, CustomRequestArgs } from "./types";
 
 const FileUploadContainer = styled.div`
   width: 350px;
@@ -22,7 +22,7 @@ type Props = {
   finishEdit: (e: any) => void,
   onChange: OnChange,
   multiple: boolean,
-  serviceConfig: ServiceConfig
+  imageStorage: any
 };
 
 type State = {
@@ -82,7 +82,7 @@ export default class UploadImage extends React.Component<Props, State> {
   }
 
   render() {
-    const { multiple, finishEdit, serviceConfig } = this.props;
+    const { multiple, finishEdit, imageStorage } = this.props;
     const { fileList } = this.state;
     let content;
     let finish;
@@ -91,7 +91,10 @@ export default class UploadImage extends React.Component<Props, State> {
       multiple,
       // name is **need** to be image according to imgur api
       // https://api.imgur.com/endpoints/image
-      ...serviceConfig,
+      customRequest: (obj: CustomRequestArgs) => {
+        const { file, onProgress, onSuccess, onError } = obj;
+        imageStorage.upload(file, file.name);
+      },
       onChange: this.uploadFile
     };
 

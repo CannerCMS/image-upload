@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { Modal } from "antd";
 import {IntlProvider, FormattedMessage, addLocaleData} from 'react-intl';
-import type { OnChange, ServiceConfig, GalleryConfig } from "./types";
+import type { OnChange, GalleryConfig } from "./types";
 import Container from './Container';
 
 import enLocale from './locale/en';
@@ -19,8 +19,8 @@ export type Props = {
   onChange: OnChange,
   editPopup: boolean,
   multiple: boolean,
-  // pass image configurations generate from: https://github.com/Canner/image-service-config
-  serviceConfig?: ServiceConfig,
+  // pass image configurations generate from: https://github.com/Canner/canner/tree/canary/packages/canner-storage
+  imageStorage?: any,
   closeEditPopup?: () => void
 };
 
