@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import styled from "styled-components";
 import {FormattedMessage} from 'react-intl';
 import { Row, Upload, Icon, Alert, Button, Progress } from "antd";
@@ -26,7 +26,8 @@ type Props = {
 };
 
 type State = {
-  fileList: Array<any>
+  fileList: Array<any>,
+  error: ?Error
 };
 
 export default class UploadImage extends React.Component<Props, State> {
@@ -35,7 +36,8 @@ export default class UploadImage extends React.Component<Props, State> {
     (this: any).uploadFile = this.uploadFile.bind(this);
     (this: any).finishSuccessEdit = this.finishSuccessEdit.bind(this);
     this.state = {
-      fileList: []
+      fileList: [],
+      error: null
     };
   }
 
@@ -54,10 +56,26 @@ export default class UploadImage extends React.Component<Props, State> {
     onChange(urls);
     this.setState(
       {
-        fileList: []
+        fileList: [],
+        error: null
       },
       finishEdit(e)
     );
+  }
+
+  finishErrorEdit = () => {
+    this.setState(
+      {
+        fileList: [],
+        error: null
+      }
+    );
+  }
+
+  onError = (e: Error) => {
+    this.setState({
+      error: e
+    });
   }
 
   uploadFile(info: { file: any, fileList: Array<any> }) {
@@ -82,8 +100,8 @@ export default class UploadImage extends React.Component<Props, State> {
   }
 
   render() {
-    const { multiple, finishEdit, serviceConfig } = this.props;
-    const { fileList } = this.state;
+    const { multiple, serviceConfig } = this.props;
+    const { fileList, error } = this.state;
     let content;
     let finish;
     let disabled = false;
@@ -94,8 +112,24 @@ export default class UploadImage extends React.Component<Props, State> {
       ...serviceConfig,
       onChange: this.uploadFile
     };
-
-    if (fileList && fileList.length) {
+    if (error) {
+      content = (
+        <React.Fragment>
+          <Alert
+            message={(
+              <FormattedMessage
+                id="imgupload.upload.error.info"
+                />
+            )}
+            type="error"
+            showIcon
+          />
+          <Button type="primary" onClick={this.finishErrorEdit}>
+            <FormattedMessage id="imgupload.btn.confirm"/>
+          </Button>
+        </React.Fragment>
+      );
+    } else if (fileList && fileList.length) {
       content = fileList.map(file => {
         const percent = file.percent;
         let info;
@@ -113,7 +147,7 @@ export default class UploadImage extends React.Component<Props, State> {
                 type="error"
                 showIcon
               />
-              <Button type="primary" onClick={finishEdit}>
+              <Button type="primary" onClick={this.finishErrorEdit}>
                 <FormattedMessage id="imgupload.btn.confirm"/>
               </Button>
             </div>
@@ -178,7 +212,12 @@ export default class UploadImage extends React.Component<Props, State> {
     return (
       <Row>
         <FileUploadContainer>
-          <Dragger {...props} fileList={fileList} disabled={disabled}>
+          <Dragger
+            onError={this.onError}
+            {...props}
+            fileList={fileList}
+            disabled={disabled}
+          >
             <FileUploadContent>
               {content}
               {finish}

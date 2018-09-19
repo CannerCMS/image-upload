@@ -32,13 +32,6 @@
   dependencies:
     "@babel/types" "7.0.0-beta.40"
 
-"@babel/helper-module-imports@^7.0.0-beta.34":
-  version "7.0.0-beta.40"
-  resolved "https://registry.yarnpkg.com/@babel/helper-module-imports/-/helper-module-imports-7.0.0-beta.40.tgz#251cbb6404599282e8f7356a5b32c9381bef5d2d"
-  dependencies:
-    "@babel/types" "7.0.0-beta.40"
-    lodash "^4.2.0"
-
 "@babel/highlight@7.0.0-beta.40":
   version "7.0.0-beta.40"
   resolved "https://registry.yarnpkg.com/@babel/highlight/-/highlight-7.0.0-beta.40.tgz#b43d67d76bf46e1d10d227f68cddcd263786b255"
@@ -694,12 +687,6 @@ babel-plugin-check-es2015-constants@^6.22.0:
   resolved "https://registry.yarnpkg.com/babel-plugin-check-es2015-constants/-/babel-plugin-check-es2015-constants-6.22.0.tgz#35157b101426fd2ffd3da3f75c7d1e91835bbf8a"
   dependencies:
     babel-runtime "^6.22.0"
-
-babel-plugin-import@^1.1.0:
-  version "1.6.5"
-  resolved "https://registry.yarnpkg.com/babel-plugin-import/-/babel-plugin-import-1.6.5.tgz#fb25fafdaeef1e309d3a17338eefb4bad54f7fc0"
-  dependencies:
-    "@babel/helper-module-imports" "^7.0.0-beta.34"
 
 babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
