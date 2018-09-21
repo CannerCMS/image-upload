@@ -9,13 +9,19 @@ import type { OnChange, ServiceConfig } from "./types";
 
 const FileUploadContainer = styled.div`
   width: 350px;
-  height: 200px;
+  height: 300px;
   margin-right: auto;
   margin-left: auto;
 `;
 
 const FileUploadContent = styled.div`
   margin: 10px;
+  overflow: scroll;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 type Props = {
@@ -117,9 +123,9 @@ export default class UploadImage extends React.Component<Props, State> {
         <React.Fragment>
           <Alert
             message={(
-              <FormattedMessage
+              error.message || <FormattedMessage
                 id="imgupload.upload.error.info"
-                />
+              />
             )}
             type="error"
             showIcon

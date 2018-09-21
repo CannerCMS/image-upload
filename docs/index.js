@@ -65,6 +65,7 @@ class Demo extends Component {
           <Button onClick={this.showPopup}>show edit</Button>
           <ImageUpload
             locale="en"
+            multiple={true}
             localeMessages={enLocale}
             closeEditPopup={this.closePopup}
             editPopup={this.state.popup}
