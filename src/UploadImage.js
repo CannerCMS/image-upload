@@ -33,6 +33,7 @@ type Props = {
 
 type State = {
   fileList: Array<any>,
+  displayFileList: Array<any>,
   error: ?Error
 };
 
@@ -43,6 +44,7 @@ export default class UploadImage extends React.Component<Props, State> {
     (this: any).finishSuccessEdit = this.finishSuccessEdit.bind(this);
     this.state = {
       fileList: [],
+      displayFileList: [],
       error: null
     };
   }
@@ -89,7 +91,14 @@ export default class UploadImage extends React.Component<Props, State> {
     // see issue: https://github.com/ant-design/ant-design/issues/2423#issuecomment-233523579
     // 1. Limit the number of uploaded files
     //    Only to show two recent uploaded files, and old ones will be replaced by the new
-    fileList = fileList.slice(-3);
+    const displayFileList = fileList.slice(-3)
+      .map(file => {
+        if (file.response && file.response.data) {
+          // Component will show file.url as link
+          file.url = file.response.data.link;
+        }
+        return file;
+      });;
 
     // 2. read from response and show file link
     fileList = fileList.map(file => {
@@ -101,13 +110,14 @@ export default class UploadImage extends React.Component<Props, State> {
     });
 
     this.setState({
-      fileList
+      fileList,
+      displayFileList
     });
   }
 
   render() {
     const { multiple, serviceConfig } = this.props;
-    const { fileList, error } = this.state;
+    const { fileList, error, displayFileList } = this.state;
     let content;
     let finish;
     let disabled = false;
@@ -135,8 +145,8 @@ export default class UploadImage extends React.Component<Props, State> {
           </Button>
         </React.Fragment>
       );
-    } else if (fileList && fileList.length) {
-      content = fileList.map(file => {
+    } else if (displayFileList && displayFileList.length) {
+      content = displayFileList.map(file => {
         const percent = file.percent;
         let info;
         disabled = true;
@@ -194,7 +204,7 @@ export default class UploadImage extends React.Component<Props, State> {
         return info;
       });
 
-      if (fileList.every(file => file.status === "done")) {
+      if (displayFileList.every(file => file.status === "done")) {
         finish = (
           <Button
             type="primary"
