@@ -65,6 +65,7 @@ export default class UploadImage extends React.Component<Props, State> {
     this.setState(
       {
         fileList: [],
+        displayFileList: [],
         error: null
       },
       finishEdit(e)
@@ -75,6 +76,7 @@ export default class UploadImage extends React.Component<Props, State> {
     this.setState(
       {
         fileList: [],
+        displayFileList: [],
         error: null
       }
     );
@@ -82,6 +84,8 @@ export default class UploadImage extends React.Component<Props, State> {
 
   onError = (e: Error) => {
     this.setState({
+      fileList: [],
+      displayFileList: [],
       error: e
     });
   }
